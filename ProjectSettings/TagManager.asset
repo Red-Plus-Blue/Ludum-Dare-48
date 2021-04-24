@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Elevator
   layers:
   - Default
   - TransparentFX
@@ -38,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3456793671
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: OnGround
+    uniqueID: 3048981145
+    locked: 0
+  - name: Player
+    uniqueID: 3767258455
+    locked: 0
+  - name: Blocks
+    uniqueID: 1803234229
     locked: 0
