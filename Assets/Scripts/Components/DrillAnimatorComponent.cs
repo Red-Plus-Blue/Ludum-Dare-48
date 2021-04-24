@@ -11,8 +11,8 @@ public class DrillAnimatorComponent : MonoBehaviour
     private void Awake()
     {
         _animation = DOTween.Sequence()
-            .Append(_drill.DOLocalMoveY(-0.05f, .25f))
-            .Append(_drill.DOLocalMoveY(0.05f, .25f))
+            .Append(_drill.DOLocalMoveY(-0.03f, .25f))
+            .Append(_drill.DOLocalMoveY(0.03f, .25f))
             .SetLoops(-1);
     }
 
