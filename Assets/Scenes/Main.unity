@@ -828,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wordHolder: {fileID: 175717315}
   _title: {fileID: 175717314}
-  SkipTitle: 1
+  SkipTitle: 0
 --- !u!1 &477677849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3225,6 +3225,8 @@ MonoBehaviour:
   - {fileID: 4566647435739386402, guid: 1cf8490815de2ea4eba7bee4bebc2892, type: 3}
   _impassableBlockPrefab: {fileID: 8795001532653064780, guid: 67500c9c7b413dd4a973fb1fcc243dea, type: 3}
   _background: {fileID: 1602199850}
+  _floatingTextPrefab: {fileID: 2245777471606034374, guid: 5f6bfd99dbb6bc04b9166668a7df58cd, type: 3}
+  _tutorialShopPrefab: {fileID: 5222829087730833193, guid: 84d190345b8b9eb43a5cf6918d4ef9d5, type: 3}
   _exitPrefab: {fileID: 5005403584520976866, guid: dbc7d42f68943484189399bd4b2a70a5, type: 3}
 --- !u!1 &1992567398
 GameObject:

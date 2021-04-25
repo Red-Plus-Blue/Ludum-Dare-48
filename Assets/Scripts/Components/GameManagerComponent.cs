@@ -8,6 +8,7 @@ public class GameManagerComponent : MonoBehaviour
     public static GameManagerComponent Instance { get; protected set; }
 
     public bool IsFirstLoad { get; protected set; } = true;
+    public bool IsTutorial { get; protected set;}
 
     public int Level { get; protected set; }
 
@@ -41,22 +42,24 @@ public class GameManagerComponent : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            StartGame();
+            Defeated = false;
+            StartGame(false);
         }
     }
 
-    public void StartGame()
+    public void StartGame(bool fromTitleScreen)
     {
         Level = 0;
         Fuel = 100f;
         Durability = 1_000f;
         Money = 0;
-        ExitLevel();
+        ExitLevel(fromTitleScreen);
     }
 
-    public void ExitLevel()
+    public void ExitLevel(bool fromTitleScreen)
     {
-        if(_exiting) { return; }
+        IsTutorial = fromTitleScreen;
+        if (_exiting) { return; }
         Level += 1;
         _exiting = true;
         ExitComponent.TouchingExitCount = 0;

@@ -47,6 +47,6 @@ public class TitleComponent : MonoBehaviour
     public void OnClickStart()
     {
         FindObjectOfType<PlayerControllerComponent>().InputLocked = false;
-        GameManagerComponent.Instance.StartGame();
+        GameManagerComponent.Instance.StartGame(true);
     }
 }

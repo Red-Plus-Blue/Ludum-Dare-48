@@ -8,7 +8,7 @@ public class ExitComponent : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Q) && (TouchingExitCount > 0))
         {
-            FindObjectOfType<GameManagerComponent>().ExitLevel();
+            FindObjectOfType<GameManagerComponent>().ExitLevel(false);
         }
     }
 
