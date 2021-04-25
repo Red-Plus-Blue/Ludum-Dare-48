@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429022651310479526}
   - component: {fileID: 8808033606273706693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507022024362751939}
   - component: {fileID: 3745952813375966498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3082296690458325678}
   - component: {fileID: 3263082299126810132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2389680820156760135}
   - component: {fileID: 6896041681962276846}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754999689184587007}
   - component: {fileID: 5200297862857446323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417945225573405753}
   - component: {fileID: 3958872895978561802}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2117155067359274954}
   - component: {fileID: 4008795519647856836}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Oil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 8717565524386546068}
   - component: {fileID: 8717565524386546069}
   - component: {fileID: 8795001532653064780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FuelBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,6 +649,7 @@ MonoBehaviour:
   Fuel: 75
   _impassable: 0
   _damagedSprite: {fileID: 21300000, guid: 30e3de895af6ef1448d00cb0415d03d4, type: 3}
+  _spawnOnDeath: []
 --- !u!1 &8717565524944021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8717565524944021720}
   - component: {fileID: 8717565524944021721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +728,7 @@ SpriteRenderer:
   m_SortingLayerID: 1803234229
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dc2f0e9a606ad0e4398c2914a1a74ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 017e73a1d0fdf77489faf55ac626705d, type: 3}
   m_Color: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0

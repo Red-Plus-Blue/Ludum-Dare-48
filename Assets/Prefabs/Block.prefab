@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8717565524386546068}
   - component: {fileID: 8717565524386546069}
   - component: {fileID: 8795001532653064780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,6 +75,7 @@ MonoBehaviour:
   Fuel: 0
   _impassable: 0
   _damagedSprite: {fileID: 21300000, guid: 30e3de895af6ef1448d00cb0415d03d4, type: 3}
+  _spawnOnDeath: []
 --- !u!1 &8717565524944021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8717565524944021720}
   - component: {fileID: 8717565524944021721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,8 +147,8 @@ SpriteRenderer:
   m_SortingLayerID: 1803234229
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dc2f0e9a606ad0e4398c2914a1a74ea7, type: 3}
-  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 017e73a1d0fdf77489faf55ac626705d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

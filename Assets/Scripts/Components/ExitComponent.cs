@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ExitComponent : MonoBehaviour
 {
-    protected bool _playerCanExit;
+    public static int TouchingExitCount;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && _playerCanExit)
+        if(Input.GetKeyDown(KeyCode.Q) && (TouchingExitCount > 0))
         {
             FindObjectOfType<GameManagerComponent>().ExitLevel();
         }
@@ -15,12 +15,18 @@ public class ExitComponent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(!other.GetComponentInParent<PlayerControllerComponent>()) { return; }
-        _playerCanExit = true;
+        TouchingExitCount += 1;
+        FindObjectOfType<UIComponent>().SetPrompt("Press Q to\nGo Deeper");
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.GetComponentInParent<PlayerControllerComponent>()) { return; }
-        _playerCanExit = false;
+        TouchingExitCount -= 1;
+
+        if(TouchingExitCount <= 0)
+        {
+            FindObjectOfType<UIComponent>().HidePrompt();
+        }
     }
 }

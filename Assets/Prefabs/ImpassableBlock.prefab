@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8717565524386546068}
   - component: {fileID: 8717565524386546069}
   - component: {fileID: 8795001532653064780}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ImpassableBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   Money: 0
   Fuel: 0
   _impassable: 1
+  _damagedSprite: {fileID: 0}
 --- !u!1 &8717565524944021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8717565524944021720}
   - component: {fileID: 8717565524944021721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,11 +22,20 @@ public class GameManagerComponent : MonoBehaviour
         Instance = this;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ExitLevel();
+        }
+    }
+
     public void ExitLevel()
     {
         if(_exiting) { return; }
         _exiting = true;
         Debug.Log("Loading next level");
+        ExitComponent.TouchingExitCount = 0;
         SceneManager.LoadScene(LEVEL_SCENE);
     }
 }

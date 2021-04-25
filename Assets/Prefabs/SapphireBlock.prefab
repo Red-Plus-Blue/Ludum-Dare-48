@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b2891316c0677c40931b39a0e096df0, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.0586915, a: 1}
+  m_Color: {r: 0.4575472, g: 0.5238815, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b2891316c0677c40931b39a0e096df0, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.0586915, a: 1}
+  m_Color: {r: 0.4575472, g: 0.5238815, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -236,7 +236,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b2891316c0677c40931b39a0e096df0, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.0586915, a: 1}
+  m_Color: {r: 0.4575472, g: 0.5238815, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 4443611673759842811}
   - component: {fileID: 4566647435739386402}
   m_Layer: 7
-  m_Name: RubyBlock
+  m_Name: SapphireBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,10 +322,10 @@ MonoBehaviour:
   _impassable: 0
   _damagedSprite: {fileID: 21300000, guid: 30e3de895af6ef1448d00cb0415d03d4, type: 3}
   _spawnOnDeath:
-  - {fileID: 8463024655811980111, guid: 8c6c5719a012fb44aa3c81e7b52373eb, type: 3}
-  - {fileID: 8463024655811980111, guid: 8c6c5719a012fb44aa3c81e7b52373eb, type: 3}
-  - {fileID: 8463024655811980111, guid: 8c6c5719a012fb44aa3c81e7b52373eb, type: 3}
-  - {fileID: 8463024655811980111, guid: 8c6c5719a012fb44aa3c81e7b52373eb, type: 3}
+  - {fileID: 8463024655811980111, guid: 0cfaf2f055cfd214e84faffe6b1ed7bf, type: 3}
+  - {fileID: 8463024655811980111, guid: 0cfaf2f055cfd214e84faffe6b1ed7bf, type: 3}
+  - {fileID: 8463024655811980111, guid: 0cfaf2f055cfd214e84faffe6b1ed7bf, type: 3}
+  - {fileID: 8463024655811980111, guid: 0cfaf2f055cfd214e84faffe6b1ed7bf, type: 3}
 --- !u!1 &4443611674209314953
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b2891316c0677c40931b39a0e096df0, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.0586915, a: 1}
+  m_Color: {r: 0.4575472, g: 0.5238815, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -567,7 +567,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b2891316c0677c40931b39a0e096df0, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.0586915, a: 1}
+  m_Color: {r: 0.4575472, g: 0.5238815, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

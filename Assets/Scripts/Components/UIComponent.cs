@@ -8,6 +8,8 @@ public class UIComponent : MonoBehaviour
     protected TMP_Text _money;
     [SerializeField]
     protected RectTransform _needle;
+    [SerializeField]
+    protected TMP_Text _prompt;
 
     protected float _fuelLevel;
 
@@ -20,5 +22,16 @@ public class UIComponent : MonoBehaviour
     public void SetMoney(int amount)
     {
         _money.text = amount.ToString("###,###,##0");
+    }
+
+    public void SetPrompt(string text)
+    {
+        _prompt.gameObject.SetActive(true);
+        _prompt.text = text;
+    }
+
+    public void HidePrompt()
+    {
+        _prompt.gameObject.SetActive(false);
     }
 }

@@ -1,11 +1,20 @@
 using UnityEngine;
 
+using System.Linq;
+using System.Collections.Generic;
+
 public class PlayerControllerComponent : MonoBehaviour
 {
+    public bool InputLocked;
+
     [SerializeField]
     protected float _speed = 3f;
     [SerializeField]
     protected float _rotationSpeed = 90f;
+    [SerializeField]
+    protected GameObject _rockEffect;
+    [SerializeField]
+    protected List<ParticleSystem> _drillParticles;
 
     protected float _drillDelay = 0.15f;
 
@@ -48,7 +57,7 @@ public class PlayerControllerComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_outOfFuel) { return; }
+        if(InputLocked || _outOfFuel) { return; }
 
         var horizontal = -Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
@@ -63,16 +72,48 @@ public class PlayerControllerComponent : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0f, 0f, horizontal * _rotationSpeed * Time.fixedDeltaTime);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var block = other.GetComponent<BlockComponent>();
+        if (!block) { return; }
+
+        _drillParticles
+            .Where(particle => particle.isStopped)
+            .ToList()
+            .ForEach(particle => particle.Play());
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         var block = other.GetComponent<BlockComponent>();
         if(!block) { return; }
 
-        if(Time.time >= _nextDrillTime)
+        _drillParticles
+            .Where(particle => particle.isStopped)
+            .ToList()
+            .ForEach(particle => particle.Play());
+
+        if (Time.time >= _nextDrillTime)
         {
-            block.TakeDamge(2);
+            block.TakeDamge(2, true);
+            var effect = Instantiate(_rockEffect, block.transform);
+            Destroy(effect, 0.6f);
             _nextDrillTime = Time.time + _drillDelay;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        var block = other.GetComponent<BlockComponent>();
+        if (!block) { return; }
+
+        _drillParticles.ForEach(particle => particle.Stop());
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+        InputLocked = true;
     }
 
 }

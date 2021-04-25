@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 public class MapComponent : MonoBehaviour
 {
     [SerializeField]
+    protected GameObject _enemyPrefab;
+    [SerializeField]
     protected BlockComponent _blockPrefab;
     [SerializeField]
     protected BlockComponent _fuelBlock;
@@ -16,6 +18,8 @@ public class MapComponent : MonoBehaviour
     protected List<BlockComponent> _moneyBlocks;
     [SerializeField]
     protected BlockComponent _impassableBlockPrefab;
+    [SerializeField]
+    protected Transform _background;
 
     [SerializeField]
     protected GameObject _exitPrefab;
@@ -34,6 +38,11 @@ public class MapComponent : MonoBehaviour
 
     protected void GenerateMap()
     {
+        _background.localScale = new Vector3(_width, _height, 1f);
+        _background.position = new Vector3((_width / 2f) - 0.5f, (_height / 2f) - 0.5f, 1f);
+        var material = _background.GetComponent<MeshRenderer>().material;
+        material.SetTextureScale("_MainTex", new Vector2(_width, _height));
+
         // Fill with blocks
         _blocks = new BlockComponent[_width, _height];
         Enumerable.Range(0, _height)
@@ -44,7 +53,7 @@ public class MapComponent : MonoBehaviour
                     .ForEach(x => {
                         var name = $"Block: ({x} ,{y})";
                         var position = new Vector3(x, y, transform.position.z);
-                        var isEdge = (x == 0) || (y == 0) || (x == _width - 1) || (y == _height - 1);
+                        var isEdge = (x <= 2) || (y <= 2) || (x >= _width - 3) || (y >= _height - 3);
                         var prefab = isEdge ? _impassableBlockPrefab : _blockPrefab;
                         if(prefab != _impassableBlockPrefab)
                         {
@@ -59,6 +68,17 @@ public class MapComponent : MonoBehaviour
                         _blocks[x, y] = block;
                     });
             });
+
+        Enumerable.Range(2, 4).ToList().ForEach(_ =>
+        {
+            var spawn = new Vector2Int(
+                Random.Range((int)(0.15f * _width), (int)(0.85f * _width)),
+                Random.Range((int)(0.15f * _height), (int)(0.85f * _height))
+            );
+
+            Destroy(_blocks[spawn.x, spawn.y].gameObject);
+            Instantiate(_enemyPrefab, new Vector3(spawn.x, spawn.y, transform.position.z), Quaternion.identity);
+        });
 
         // Spawn Player
         var spawn = new Vector2Int(
@@ -78,8 +98,8 @@ public class MapComponent : MonoBehaviour
         var isX = Random.Range(0, 2) == 0;
         var isMaximum = Random.Range(0, 2) == 0;
         var position = Random.Range(0, isX ? _width : _height);
-        var x = isX ? position : (isMaximum ? _width - 1 : 0);
-        var y = !isX ? position : (isMaximum ? _height - 1 : 0);
+        var x = isX ? position : (isMaximum ? _width - 2 : 1);
+        var y = !isX ? position : (isMaximum ? _height - 2 : 1);
 
         DoForEachInRange(new Vector2Int(x, y), 1, (block) =>
         {
@@ -95,6 +115,11 @@ public class MapComponent : MonoBehaviour
             for (var xOffset = -range; xOffset <= range; xOffset++)
             {
                 var position = center + new Vector2Int(xOffset, yOffset);
+                if(position.x == 0 || position.y == 0 || position.x == _width - 1 || position.y == _height - 1)
+                {
+                    continue;
+                }
+
                 if(!IsOnMap(position.x, position.y)) { continue; }
                 action(_blocks[position.x, position.y]);
             }
