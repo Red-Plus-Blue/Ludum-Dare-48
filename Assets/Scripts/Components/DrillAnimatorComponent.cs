@@ -56,5 +56,4 @@ public class DrillAnimatorComponent : MonoBehaviour
     {
         _animation.Kill();
     }
-
 }

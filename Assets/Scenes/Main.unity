@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad5c275bc19fe544a9bc75c47b97912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fuel: 10
+  Fuel: 100
   Money: 0
   Durability: 1000
 --- !u!1 &174499413
@@ -413,7 +413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 109.6, y: 31.2}
+  m_AnchoredPosition: {x: 109.6001, y: 31.199951}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174499415
@@ -828,6 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wordHolder: {fileID: 175717315}
   _title: {fileID: 175717314}
+  SkipTitle: 1
 --- !u!1 &477677849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,7 +3984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2325469773572643815, guid: 69ef3d0f3163357478d6156a968a9da0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 2325469773701171978, guid: 69ef3d0f3163357478d6156a968a9da0, type: 3}
       propertyPath: m_Layer

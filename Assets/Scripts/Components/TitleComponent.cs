@@ -13,9 +13,12 @@ public class TitleComponent : MonoBehaviour
     [SerializeField]
     protected GameObject _title;
 
+    public bool SkipTitle;
+
     private void Awake()
     {
-        if(!GameManagerComponent.Instance || GameManagerComponent.Instance.IsFirstLoad)
+
+        if(!SkipTitle && (!GameManagerComponent.Instance || GameManagerComponent.Instance.IsFirstLoad))
         {
             StartCoroutine(ShowTitle());
         }

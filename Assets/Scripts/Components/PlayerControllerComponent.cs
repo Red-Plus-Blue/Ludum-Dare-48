@@ -29,6 +29,8 @@ public class PlayerControllerComponent : MonoBehaviour
 
     public int Money { get; protected set; }
 
+    public int MiningDamage = 2;
+
     protected Rigidbody2D _rigidbody2D;
     protected UIComponent _ui;
 
@@ -74,6 +76,7 @@ public class PlayerControllerComponent : MonoBehaviour
         transform.position += transform.up * vertical * _speed * Time.fixedDeltaTime;
         transform.rotation *= Quaternion.Euler(0f, 0f, horizontal * _rotationSpeed * Time.fixedDeltaTime);
     }
+
     public void AddMoney(int amount)
     {
         Money += amount;
@@ -88,6 +91,13 @@ public class PlayerControllerComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        var enemy = other.GetComponentInParent<EnemyComponent>();
+        if(enemy && !other.isTrigger)
+        {
+            enemy.Stun();
+            return;
+        }
+        
         var block = other.GetComponent<BlockComponent>();
         if (!block) { return; }
 
@@ -111,7 +121,7 @@ public class PlayerControllerComponent : MonoBehaviour
         {
             _drillDurability -= 1;
             _ui.SetDurability(_drillDurability / _drillDurabilityMax);
-            block.TakeDamge(2, true);
+            block.TakeDamge(MiningDamage, true);
             var effect = Instantiate(_rockEffect, block.transform);
             Destroy(effect, 0.6f);
             _nextDrillTime = Time.time + _drillDelay;
@@ -130,6 +140,12 @@ public class PlayerControllerComponent : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameManagerComponent.Instance.Lose("Destroyed");
+    }
+
+    public void RepairDrill()
+    {
+        _drillDurability = _drillDurabilityMax;
+        _ui.SetDurability(_drillDurability / _drillDurabilityMax);
     }
 
     private void OnDestroy()

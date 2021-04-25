@@ -7,7 +7,7 @@ public class GameManagerComponent : MonoBehaviour
 
     public static GameManagerComponent Instance { get; protected set; }
 
-    public bool IsFirstLoad { get; protected set; }
+    public bool IsFirstLoad { get; protected set; } = true;
 
     public int Level { get; protected set; }
 
