@@ -16,6 +16,9 @@ public class PlayerControllerComponent : MonoBehaviour
     [SerializeField]
     protected List<ParticleSystem> _drillParticles;
 
+    protected float _drillDurabilityMax = 1_000;
+    protected float _drillDurability = 1_000;
+
     protected float _drillDelay = 0.15f;
 
     protected float _nextDrillTime;
@@ -24,34 +27,34 @@ public class PlayerControllerComponent : MonoBehaviour
     protected float _currentFuel = 100f;
     protected float _maxFuel = 100f;
 
-    protected int _money;
+    public int Money { get; protected set; }
 
     protected Rigidbody2D _rigidbody2D;
     protected UIComponent _ui;
-
-    public void AddMoney(int amount)
-    {
-        _money += amount;
-        _ui.SetMoney(_money);
-    }
-
-    public void AddFuel(float amount)
-    {
-        _currentFuel = Mathf.Min(_maxFuel, _currentFuel + amount);
-        _ui.SetFuelLevel(_currentFuel / _maxFuel);
-    }
 
     private void Awake()
     {
         _ui = FindObjectOfType<UIComponent>();
     }
 
+    private void Start()
+    {
+        Money = GameManagerComponent.Instance.Money;
+        _ui.SetMoney(Money);
+
+        _currentFuel = GameManagerComponent.Instance.Fuel;
+        _ui.SetFuelLevel(_currentFuel / _maxFuel);
+
+        _drillDurability = GameManagerComponent.Instance.Durability;
+        _ui.SetDurability(_drillDurability / _drillDurabilityMax);
+    }
+
     private void Update()
     {
         if(!_outOfFuel && (_currentFuel <= 0f))
         {
-            Debug.Log("Out of fuel");
             _outOfFuel = true;
+            GameManagerComponent.Instance.Lose("Out of Fuel");
         }
     }
 
@@ -70,6 +73,17 @@ public class PlayerControllerComponent : MonoBehaviour
 
         transform.position += transform.up * vertical * _speed * Time.fixedDeltaTime;
         transform.rotation *= Quaternion.Euler(0f, 0f, horizontal * _rotationSpeed * Time.fixedDeltaTime);
+    }
+    public void AddMoney(int amount)
+    {
+        Money += amount;
+        _ui.SetMoney(Money);
+    }
+
+    public void AddFuel(float amount)
+    {
+        _currentFuel = Mathf.Min(_maxFuel, _currentFuel + amount);
+        _ui.SetFuelLevel(_currentFuel / _maxFuel);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -93,8 +107,10 @@ public class PlayerControllerComponent : MonoBehaviour
             .ToList()
             .ForEach(particle => particle.Play());
 
-        if (Time.time >= _nextDrillTime)
+        if ((Time.time >= _nextDrillTime) && (_drillDurability > 0f))
         {
+            _drillDurability -= 1;
+            _ui.SetDurability(_drillDurability / _drillDurabilityMax);
             block.TakeDamge(2, true);
             var effect = Instantiate(_rockEffect, block.transform);
             Destroy(effect, 0.6f);
@@ -113,7 +129,17 @@ public class PlayerControllerComponent : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
-        InputLocked = true;
+        GameManagerComponent.Instance.Lose("Destroyed");
+    }
+
+    private void OnDestroy()
+    {
+        if(!GameManagerComponent.Instance.Defeated)
+        {
+            GameManagerComponent.Instance.Fuel = _currentFuel;
+            GameManagerComponent.Instance.Money = Money;
+            GameManagerComponent.Instance.Durability = _drillDurability;
+        }
     }
 
 }

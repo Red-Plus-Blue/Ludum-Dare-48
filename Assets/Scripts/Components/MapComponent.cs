@@ -94,14 +94,13 @@ public class MapComponent : MonoBehaviour
         elevator.transform.position = new Vector3(spawn.x, spawn.y, transform.position.z);
 
         // Generate Exit
-
         var isX = Random.Range(0, 2) == 0;
         var isMaximum = Random.Range(0, 2) == 0;
         var position = Random.Range(0, isX ? _width : _height);
         var x = isX ? position : (isMaximum ? _width - 2 : 1);
         var y = !isX ? position : (isMaximum ? _height - 2 : 1);
 
-        DoForEachInRange(new Vector2Int(x, y), 1, (block) =>
+        DoForEachInRange(new Vector2Int(x, y), 2, (block) =>
         {
             Destroy(block.gameObject);
             Instantiate(_exitPrefab, block.gameObject.transform.position, Quaternion.identity);
