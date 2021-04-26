@@ -42,7 +42,6 @@ public class GameManagerComponent : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            Defeated = false;
             StartGame(false);
         }
     }

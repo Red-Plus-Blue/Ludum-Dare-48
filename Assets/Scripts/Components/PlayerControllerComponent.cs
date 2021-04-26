@@ -16,6 +16,8 @@ public class PlayerControllerComponent : MonoBehaviour
     [SerializeField]
     protected List<ParticleSystem> _drillParticles;
 
+    protected DrillAnimatorComponent _animator;
+
     protected float _drillDurabilityMax = 1_000;
     protected float _drillDurability = 1_000;
 
@@ -36,6 +38,7 @@ public class PlayerControllerComponent : MonoBehaviour
 
     private void Awake()
     {
+        _animator = GetComponent<DrillAnimatorComponent>();
         _ui = FindObjectOfType<UIComponent>();
     }
 
@@ -120,6 +123,8 @@ public class PlayerControllerComponent : MonoBehaviour
         if ((Time.time >= _nextDrillTime) && (_drillDurability > 0f))
         {
             _drillDurability -= 1;
+            _animator.DamageBlock();
+            _animator.IncreaseHeat(1);
             _ui.SetDurability(_drillDurability / _drillDurabilityMax);
             block.TakeDamge(MiningDamage, true);
             var effect = Instantiate(_rockEffect, block.transform);
@@ -148,14 +153,11 @@ public class PlayerControllerComponent : MonoBehaviour
         _ui.SetDurability(_drillDurability / _drillDurabilityMax);
     }
 
-    private void OnDestroy()
+    public void StoreResults()
     {
-        if(!GameManagerComponent.Instance.Defeated)
-        {
-            GameManagerComponent.Instance.Fuel = _currentFuel;
-            GameManagerComponent.Instance.Money = Money;
-            GameManagerComponent.Instance.Durability = _drillDurability;
-        }
+        GameManagerComponent.Instance.Fuel = _currentFuel;
+        GameManagerComponent.Instance.Money = Money;
+        GameManagerComponent.Instance.Durability = _drillDurability;
     }
 
 }
